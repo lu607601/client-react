@@ -1,7 +1,7 @@
 import { LOGIN, REGISTER } from "./types";
 import { ajax } from "../../ajax.js";
 export const register = postData => dispatch => {
-  ajax.post("/users/register", postData).then(function(res) {
+  ajax.post("/api/register", postData).then(function(res) {
     dispatch({
       type: REGISTER,
       payload: res.data.data
@@ -10,7 +10,7 @@ export const register = postData => dispatch => {
 };
 
 export const login = postData => dispatch => {
-  ajax.post("/users/login", postData).then(function(res) {
+  ajax.post("/api/login", postData).then(function(res) {
     dispatch({
       type: LOGIN,
       payload: res.data.data
@@ -19,7 +19,7 @@ export const login = postData => dispatch => {
 };
 
 export const checkLogin = () => dispatch => {
-  ajax.get("/users/checkLogin").then(function(res) {
+  ajax.get("/api/checkLogin").then(function(res) {
     dispatch({
       type: LOGIN,
       payload: res.data.data
