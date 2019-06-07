@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Modal } from "antd";
+import "./index.less";
+import "./mobile.less";
 const FormItem = Form.Item;
 const formItemLayout = {
   labelCol: {

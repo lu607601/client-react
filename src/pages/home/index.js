@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { List, Icon } from "antd";
+import { isMobile } from "@src/utils";
+
 import "./index.less";
 
 class Home extends React.Component {
@@ -9,13 +11,12 @@ class Home extends React.Component {
     for (let i = 0; i < 23; i++) {
       listData.push({
         href: `/articledetail/${i}`,
-        title: `ant design part ${i}`,
+        title: `标题标题${i}`,
         avatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+          "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试",
+        content: "测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
       });
     }
 
@@ -30,12 +31,16 @@ class Home extends React.Component {
       <List
         itemLayout="vertical"
         size="large"
-        pagination={{
+        pagination={
+          isMobile
+            ? false
+            : `{{
           onChange: page => {
             console.log(page);
           },
           pageSize: 4
-        }}
+        }}`
+        }
         dataSource={listData}
         renderItem={item => (
           <List.Item

@@ -6,17 +6,16 @@ import { Row, Col, Menu, Icon, Button } from "antd";
 import Register from "../register/index";
 import Login from "../login/index";
 import navConfig from "../../config/nav.js";
-import { findObject } from "../../utils.js";
-// import { login } from "../../store/actions/login";
-// import { register } from "../../store/actions/register";
 import { login, register, checkLogin } from "../../store/actions/user";
-
+import { findObject, isMobile } from "@src/utils";
 import "./index.less";
+import "./mobile.less";
+
 class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isMobile: false,
+      isNavShow: false,
       loginVisible: false,
       registerVisible: false,
       menuCurrent: null
@@ -46,12 +45,7 @@ class Nav extends Component {
     this.initMenu(nextProps);
   }
   handleLogout = e => {
-    // console.log('click ', e);
-    // this.setState({
-    //   current: e.key
-    // });
-    // window.sessionStorage.userInfo = "";
-    // this.onClose();
+    console.log("e-退出");
   };
   showModal = params => {
     this.onClose();
@@ -61,6 +55,13 @@ class Nav extends Component {
   };
   hideModal = () => {
     this.onClose();
+  };
+  // 移动端导航操作
+  handleMobileNav = () => {
+    console.log("移动端操作");
+    this.setState({
+      isNavShow: !this.state.isNavShow
+    });
   };
   render() {
     const onClose = this.onClose;
@@ -103,6 +104,7 @@ class Nav extends Component {
     ));
 
     const { userName } = this.props.user;
+    const { isNavShow } = this.state;
     let userInfo = "";
     if (userName) {
       userInfo = (
@@ -111,10 +113,10 @@ class Nav extends Component {
             {userName}
           </Button>
           <Button
-            type="danger"
+            type="primary"
             icon="logout"
             style={{ marginRight: "15px" }}
-            onClick={() => this.showModal("register")}
+            onClick={() => this.handleLogout}
           >
             退出
           </Button>
@@ -126,15 +128,13 @@ class Nav extends Component {
           <Button
             type="primary"
             icon="login"
-            style={{ marginRight: "15px" }}
             onClick={() => this.showModal("login")}
           >
             登 录
           </Button>
           <Button
-            type="danger"
-            icon="logout"
-            style={{ marginRight: "15px" }}
+            type="primary"
+            icon="login"
             onClick={() => this.showModal("register")}
           >
             注 册
@@ -143,13 +143,19 @@ class Nav extends Component {
       );
     }
     return (
-      <div className="nav">
+      <div className={["nav"].join(" ")}>
+        {isMobile && !isNavShow && (
+          <Icon type="bars" onClick={() => this.handleMobileNav()} />
+        )}
+        {isMobile && isNavShow && (
+          <Icon type="close" onClick={() => this.handleMobileNav()} />
+        )}
         <div
-          className="header"
-          style={{
-            backgroundColor: "white",
-            borderBottom: "1px solid #eee"
-          }}
+          className={[
+            "header",
+            isMobile ? "mobile" : "",
+            isNavShow ? "show" : ""
+          ].join(" ")}
         >
           <Row type="flex" justify="space-between" align="middle">
             <Col>

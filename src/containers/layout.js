@@ -1,10 +1,10 @@
-import "./index.less";
-import "./mobile.less";
 import React, { Component } from "react";
 import { Layout, BackTop, Divider } from "antd";
 import Nav from "../components/nav/index";
 import SideLeft from "../components/sideLeft/index";
-
+import { isMobile } from "@src/utils";
+import "./index.less";
+import "./mobile.less";
 const { Content, Sider, Footer } = Layout;
 
 class Layouts extends Component {
@@ -19,10 +19,15 @@ class Layouts extends Component {
     return (
       <div className="Layouts">
         <Nav pathname={this.props.location.pathname} />
-        <Layout className="layout" style={{ marginTop: "20px" }}>
-          <Sider style={{ background: "#fff" }} width={300}>
-            <SideLeft />
-          </Sider>
+        <Layout className="layout">
+          {!isMobile && (
+            <Sider
+              style={{ background: "#fff", marginRight: "20px" }}
+              width={200}
+            >
+              <SideLeft />
+            </Sider>
+          )}
           <Content
             style={{
               background: "#fff",

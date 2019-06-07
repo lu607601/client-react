@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN } from "../../actions/types";
+import { REGISTER, LOGIN, LOGIN_OUT } from "../../actions/types";
 /**
  * state
  */
@@ -17,6 +17,10 @@ export function user(state = initState, action) {
         ...action.payload
       };
     case LOGIN:
+      return {
+        ...action.payload
+      };
+    case LOGIN_OUT:
       return {
         ...action.payload
       };

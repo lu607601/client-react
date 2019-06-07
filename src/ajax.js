@@ -1,7 +1,12 @@
 import axios from "axios";
 import { message } from "antd";
+/**
+ * baseUrl 开发环境和pro环境
+ */
+const baseURL =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
 export const ajax = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: baseURL,
   timeout: 1000,
   withCredentials: true,
   validateStatus: function(status) {

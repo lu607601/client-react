@@ -4,3 +4,4 @@ export const findObject = (arr, key, val) => {
   });
   return result;
 };
+export const isMobile = /mobile/i.test(navigator.userAgent);

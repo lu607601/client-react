@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.less";
 import App from "./App";
 import { createBrowserHistory } from "history";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -15,6 +14,10 @@ import { createLogger } from "redux-logger";
 import Immutable from "immutable";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/index";
+
+import "./animation.css";
+import "./index.less";
+import "./mobile.less";
 
 const history = createBrowserHistory();
 

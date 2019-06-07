@@ -37,12 +37,20 @@ img {
 }
 
 .ant-list-vertical {
+    .ant-list-item {
+        &:first-child {
+            padding-top: 0;
+        }
+    }
+
     .ant-list-item-extra {
         margin-left: 0.1rem !important;
     }
+
     .ant-list-item-meta {
         margin-bottom: 0 !important;
     }
+
     .ant-list-item-content {
         overflow: hidden;
         text-overflow: ellipsis;

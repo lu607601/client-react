@@ -1,4 +1,4 @@
-import { LOGIN, REGISTER } from "./types";
+import { LOGIN, REGISTER, LOGIN_OUT } from "./types";
 import { ajax } from "../../ajax.js";
 export const register = postData => dispatch => {
   ajax.post("/api/register", postData).then(function(res) {
@@ -22,6 +22,15 @@ export const checkLogin = () => dispatch => {
   ajax.get("/api/checkLogin").then(function(res) {
     dispatch({
       type: LOGIN,
+      payload: res.data.data
+    });
+  });
+};
+
+export const logout = () => dispatch => {
+  ajax.get("/api/loginout").then(function(res) {
+    dispatch({
+      type: LOGIN_OUT,
       payload: res.data.data
     });
   });
